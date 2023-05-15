@@ -1,8 +1,15 @@
 from django.shortcuts import render
+from .models import *
+
+
+def index(request):
+    context = {}
+    return render(request, "shop/index.html", context)
 
 
 def store(request):
-    context = {}
+    products = Product.objects.all()
+    context = {'products': products}
     return render(request, "shop/store.html", context)
 
 

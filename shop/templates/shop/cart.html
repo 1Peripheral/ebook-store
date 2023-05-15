@@ -1,1 +1,41 @@
-<h3>cart</h3>
+{% extends 'shop/main.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="section">
+    <div class="container">
+        <div class="box-element">
+            <a class='button is-outlined' href="{% url 'store' %}">&#x2190; Continue Shopping</a>
+            <hr>
+            <table class="table">
+                <tr class="table-row">
+                    <td>Items : <strong>3</strong></td>
+                    <td>Total : <strong>$40</strong></td>
+                    <td>
+                        <a class="button is-outlined is-link"href="{% url 'checkout' %}">Checkout</a>
+                    </td>
+
+
+                </tr>
+
+            </table>
+        </div>
+
+       <br>  
+
+        <div class="box-element">
+            <div class="cart-row">
+                <div style="flex:2"> </div>
+                <div style="flex:2">Item </div>
+                <div style="flex:1">Price </div>
+                <div style="flex:1">Quantity </div>
+                <div style="flex:1"><strong>Total </strong> </div>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+{% endblock content %}
