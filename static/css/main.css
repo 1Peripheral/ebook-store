@@ -72,26 +72,31 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .quantity{
-	display: inline-block;
+	display:inline;
 	font-weight: 700;
 	padding-right:10px;
-	
+}
 
+.prices {
+    display: block;
+    float:right;
+}
+
+.table-row td{
+	display: inline;
+	padding: 5rem;
+}
+
+.chg-quantity{
+	width: 10%; 
+	cursor: pointer;
+	transition:.1s;
+}
+
+.chg-quantity:hover{
+	opacity: .6;
 }
 
 .hidden{
 	display: none!important;
-}
-
-.prices {
-    display: inline-block;
-    float:right;
-}
-
-.table-row
-{
-}
-.table-row td{
-	display: inline;
-	padding: 5rem;
 }

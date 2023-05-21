@@ -9,14 +9,14 @@
                 <div class="column is-4">
                     <div class="card">
                         <div class="card-image">
-                            <img class="thumbnail" src="{% static 'images/placeholder.png' %}" alt="">
+                            <img class="thumbnail" src="{{ product.imageURL }}" alt="">
                         </div>
                         <div class="card-content">
                             <strong>{{product.name}}</strong>
                             <hr>
                             <a href="{% url 'cart' %}" class="button is-secondary is-light is-small">Add To Cart</a>
                             <a class="button is-primary is-light is-small">View </a>
-                            <h4 class="prices">{{product.price|floatformat:2}}</h4>
+                            <h4 class="prices">${{product.price|floatformat:2}}</h4>
                         </div>
                     </div>
                 </div>

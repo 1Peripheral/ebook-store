@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # My Apps
     'shop.apps.ShopConfig',
 ]
 
@@ -134,3 +136,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SITE_ID = 1
+
+MEDIA_URL = 'images/' 
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
