@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     # My Apps
     'shop.apps.ShopConfig',
+    'accounts.apps.AccountsConfig'
 ]
 
 MIDDLEWARE = [
@@ -140,3 +141,5 @@ SITE_ID = 1
 MEDIA_URL = 'images/' 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+
+LOGIN_REDIRECT_URL = '/store'

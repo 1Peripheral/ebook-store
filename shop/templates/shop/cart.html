@@ -1,4 +1,4 @@
-{% extends 'shop/main.html' %}
+{% extends 'shop/base.html' %}
 {% load static %}
 
 {% block content %}
@@ -40,12 +40,12 @@
                 <div style="flex:1">
                     <p class="quantity">{{ item.quantity }}</p>
                     <div class="quantity">
-                        <img class="chg-quantity" src="{% static 'images/arrow-up.png' %}">
+                        <img class="chg-quantity update-cart" data-product={{item.product.id}} data-action="add" src="{% static 'images/arrow-up.png' %}">
                         |
-                        <img class="chg-quantity" src="{% static 'images/arrow-down.png' %}">
+                        <img class="chg-quantity update-cart" data-product={{item.product.id}} data-action="remove" src="{% static 'images/arrow-down.png' %}">
                     </div>
                 </div>
-                <div style="flex:1">${{ item.get_total }}</div>
+                <div style="flex:1">${{ item.get_total|floatformat:2 }}</div>
             </div>
             {% endfor %}
         </div>

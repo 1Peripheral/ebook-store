@@ -7,5 +7,9 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("shop.urls")),
 ]
-
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# Auth Related
+urlpatterns += [
+    path("accounts/", include("accounts.urls"))
+]

@@ -1,4 +1,4 @@
-{% extends 'shop/main.html' %}
+{% extends 'shop/base.html' %}
 {% load static %}
 
 {% block content %}
@@ -14,7 +14,8 @@
                         <div class="card-content">
                             <strong>{{product.name}}</strong>
                             <hr>
-                            <a href="{% url 'cart' %}" class="button is-secondary is-light is-small">Add To Cart</a>
+                            <!-- <a href="{% url 'cart' %}" class="button is-secondary is-light is-small">Add To Cart</a> -->
+                            <button data-product="{{product.id}}" data-action="add" class="button is-secondary is-light is-small update-cart">Add To Cart</button>
                             <a class="button is-primary is-light is-small">View </a>
                             <h4 class="prices">${{product.price|floatformat:2}}</h4>
                         </div>

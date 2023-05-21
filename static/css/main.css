@@ -100,3 +100,15 @@ h1,h2,h3,h4,h5,h6{
 .hidden{
 	display: none!important;
 }
+
+#user-name {
+	color:hsl(0, 0%, 88%);
+	font-weight: bold;
+	cursor: pointer;
+	transition: ease-in  0.2s;
+	opacity:0.6;
+}
+
+#user-name:hover {
+	opacity:1;
+}

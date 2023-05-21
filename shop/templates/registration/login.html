@@ -1,0 +1,44 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block content %}
+
+  {% if form.errors %}
+    <p>Your username and password didn't match. Please try again.</p>
+  {% endif %}
+
+  <section class="section">
+    <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+        <div class="field">
+            <label for="name" class="label">Username</label>
+            <div class="control">
+                <input class="input" type="text" placeholder="usename">
+            </div>
+        </div> 
+    
+        <div class="field">
+            <label for="password" class="label">Password</label>
+            <div class="control">
+                <input class="input" type="password" placeholder="password">
+            </div>
+        </div>
+    
+        <div class="field">
+            <input class="button is-success" type="submit" value="login">
+        </div>    
+    </form>
+</section>
+
+  {# Assumes you setup the password_reset view in your URLconf #}
+
+
+<!-- <form method="POST" novalidate>
+	{% csrf_token %}
+	<h2>Login</h2>
+	{{form.as_p}}
+	<input type="submit" value="Login" />
+</form> -->
+
+
+{% endblock %}

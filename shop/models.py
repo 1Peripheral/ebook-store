@@ -2,13 +2,13 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
-class Customer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
-    name = models.CharField(max_length=200, null=True)
-    email = models.CharField(max_length=200, null=True)
+# class Customer(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+#     name = models.CharField(max_length=200, null=True)
+#     email = models.CharField(max_length=200, null=True)
 
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#       return self.name
 
 
 class Product(models.Model):
@@ -30,7 +30,7 @@ class Product(models.Model):
 
 class Order(models.Model):
     customer = models.ForeignKey(
-        Customer, on_delete=models.SET_NULL, null=True, blank=True
+        User, on_delete=models.SET_NULL, null=True, blank=True
     )
     date_ordered = models.DateTimeField(auto_now_add=True)
     complete = models.BooleanField(default=False, null=True, blank=False)
@@ -76,8 +76,9 @@ class OrderItem(models.Model):
         return total
 
 
-class ShippingAddress(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
+class UserDetails(models.Model):
+    customer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    email = models.CharField(max_length=200, null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
     address = models.CharField(max_length=200, null=False)
     city = models.CharField(max_length=200, null=False)
