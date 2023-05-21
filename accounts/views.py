@@ -19,7 +19,7 @@ def sign_up(request):
             user.save()
             messages.success(request, "You have successfully signed up .")
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-            return redirect('/store')
+            return redirect('/')
     
         else:
             return render(request, 'registration/sign_up.html', {'form':form})
@@ -37,7 +37,7 @@ def sign_in(request):
             user = authenticate(request, username=username, password=password)
             if user:
                 login(request, user)
-                return redirect('/store')
+                return redirect('/')
 
         messages.error(request, "Invalid username or password")
         return render(request, 'registration/login.html', {'form':form})

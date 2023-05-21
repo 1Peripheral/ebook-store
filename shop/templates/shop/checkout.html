@@ -2,5 +2,69 @@
 {% load static %}
 
 {% block content %}
-    <h3>checkout</h3>
+<section class="section">
+    <div class="container is-fluid">
+    <div class="">
+        <div class="box-element" >
+            <form id="form">
+                <div id="user-info">
+                    <div class="control form-field">
+                        <input class="input " required type="text" type="text" name="first_name" placeholder="First Name..">
+                    </div>
+                    <div class="control form-field">
+                        <input class="input" required type="text" type="text" name="last_name" placeholder="Last Name..">
+                    </div>
+                </div>
+                <hr>
+                <label class="label">Shipping Information</label>
+                <hr>
+                <div id="shipping-info">
+                    <div class="control form-field">
+                        <input class="input" required type="text" type="text" name="address" placeholder="Address..">
+                    </div>
+                    <div class="control form-field">
+                        <input class="input" required type="text" type="text" name="city" placeholder="City..">
+                    </div>
+                    <div class="control form-field">
+                        <input class="input" required type="text" type="text" name="zipcode" placeholder="Zip Code..">
+                    </div>
+                    <div class="control form-field">
+                        <input class="input" required type="text" type="text" name="country" placeholder="Country..">
+                    </div>
+                </div>
+
+                <hr>
+                <input id="checkout-form-button" class="button is-link" type="submit" value="Continue">
+            </form>
+        </div>
+
+        <div class="box-element">
+            <a href="button is-link" href="{% url 'cart' %}">&#x2190; Back To Cart</a>
+            <hr>
+                <h3>Order Summary</h3>
+            <hr>
+            {% for item in items %}
+            <div class="cart-row">
+                <div style="flex:2">
+                    <img class="row-image" src="{{ item.product.imageURL }}">
+                </div>
+                <div style="flex:2">{{ item.product.name }}</div>
+                <div style="flex:1">${{ item.product.price|floatformat:2 }}</div>
+                <div style="flex:1">
+                    <p class="quantity">{{ item.quantity }}</p>
+                    <div class="quantity">
+                        <img class="chg-quantity update-cart" data-product={{item.product.id}} data-action="add" src="{% static 'images/arrow-up.png' %}">
+                        |
+                        <img class="chg-quantity update-cart" data-product={{item.product.id}} data-action="remove" src="{% static 'images/arrow-down.png' %}">
+                    </div>
+                </div>
+                <div style="flex:1">${{ item.get_total|floatformat:2 }}</div>
+            </div>
+            {% endfor %}
+            <h5>Items : {{ order.cart_count }}</h5>
+            <h5>Total : ${{ order.cart_total|floatformat:2 }}</h5>
+        </div>
+    </div>
+    </div>
+</section>
 {% endblock content %}

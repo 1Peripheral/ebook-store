@@ -22,14 +22,14 @@ def store(request):
 def checkout(request):
     context = {}
     if request.user.is_authenticated:
-        customer = request.user.customer
+        customer = request.user
         order, created = Order.objects.get_or_create(customer=customer)
-        items = order.orderitem_set.all() #type: ignore
+        items = order.orderitem_set.all()  # type: ignore
     else:
         items = []
-        order = {"get_cart_total": 0, "get_cart_items": 0}
+        order = {"cart_total": 0, "cart_items": 0}
 
-        context = {"items": items, "oder": order}
+    context = {"items": items, "order": order}
     return render(request, "shop/checkout.html", context)
 
 
@@ -40,8 +40,24 @@ def cart(request):
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         items = order.orderitem_set.all()  # type: ignore
         context = {"items": items, "order": order}
-        
+
     return render(request, "shop/cart.html", context)
+
+
+def viewDetails(request, productId):
+    print(productId)
+    product = Product.objects.get(id=productId)
+    context = {"product": product}
+    return render(request, "shop/detail.html", context)
+
+
+def searchResults(request):
+    context = {}
+    if request.method == 'POST':
+        search_query = request.POST['search_query']
+        items = Product.objects.filter(name__icontains=search_query)
+        context = {'items' : items}
+    return render(request, "shop/search_results.html", context)
 
 
 def updateItem(request):
@@ -49,11 +65,11 @@ def updateItem(request):
     productId = data["productId"]
     action = data["action"]
 
-    customer = request.user 
+    customer = request.user
     product = Product.objects.get(id=productId)
     order, created = Order.objects.get_or_create(customer=customer, complete=False)
 
-    orderItem, created = OrderItem.objects.get_or_create(order=order, product=product) # type: ignore
+    orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)  # type: ignore
 
     if action == "add":
         orderItem.quantity += 1
@@ -66,4 +82,3 @@ def updateItem(request):
         orderItem.delete()
 
     return JsonResponse("Item was added", safe=False)
-
