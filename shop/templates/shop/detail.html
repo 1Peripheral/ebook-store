@@ -8,7 +8,7 @@
         <div class="box">
             <article class="media">
                 <div class="media-left">
-                    <figure class="image is-256x256">
+                    <figure class="image is-128x128">
                         <img src="{{ product.imageURL }}" alt="">
                     </figure>
                 </div>
@@ -17,6 +17,17 @@
                         <p class="product-description">
                             <strong>{{product.name}}</strong>
                             <p>{{ product.description}}</p>
+                            <div class="block my-5">
+                                {% if product.is_pdf %}
+                                    <span class="tag is-danger is-light">PDF</span>
+                                {% endif %}
+                                {% if product.is_ebook %}
+                                    <span class="tag is-info is-light">E-BOOK</span>
+                                {% endif %}
+                                {% if product.is_physical %}
+                                    <span class="tag is-success is-light">PHYSICAL</span>
+                                {% endif %}
+                            </div>
                             <hr>
                         </p>
                         

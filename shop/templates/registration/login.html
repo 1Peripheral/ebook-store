@@ -3,34 +3,31 @@
 
 {% block content %}
 
-  {% if form.errors %}
-    <p>Your username and password didn't match. Please try again.</p>
-  {% endif %}
 
-  <section class="section">
-    <form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-        <div class="field">
-            <label for="name" class="label">Username</label>
-            <div class="control">
-                <input class="input" type="text" placeholder="usename">
-            </div>
-        </div> 
-    
-        <div class="field">
-            <label for="password" class="label">Password</label>
-            <div class="control">
-                <input class="input" type="password" placeholder="password">
-            </div>
-        </div>
-    
-        <div class="field">
-            <input class="button is-success" type="submit" value="login">
-        </div>    
+<section class="section">
+      {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+        {% endif %}
+    <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        <h2>Log In</h2>
+            
+        {% for field in form %}
+        <p>
+            {% if field.errors %}
+            <ul class="errorlist">
+                {% for error in field.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {{ field.label_tag }} {{ field }}
+        </p>
+        {% endfor %}
+        <input type="submit" value="login">
+        <input type="hidden" name="next" value="{{ next }}">
     </form>
-
 </section>
-
 
 
 {% endblock %}

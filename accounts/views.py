@@ -27,7 +27,7 @@ def sign_up(request):
 def sign_in(request):
     if request.method == 'GET':
         form = LoginForm()
-        return render(request, 'registration/sign_up.html', {'form':form})
+        return render(request, 'registration/login.html', {'form':form})
 
     elif request.method == 'POST':
         form = LoginForm(request.POST)

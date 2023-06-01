@@ -6,6 +6,9 @@
 <section class="section">
     <div class="container">
         <a class="button btn-go-back is-info is-outlined" href="{% url 'store' %}">Go Back</a>
+        {% if product|length == 0 %}
+            <h2>No Book Matches Your Input ! </h2>
+        {% endif %}
         {% for product in items %}
         <div class="box">
             <article class="media">
@@ -18,6 +21,17 @@
                     <div class="content">
                         <p class="product-description">
                             <strong>{{product.name}}</strong>
+                            <div class="block my-5">
+                                {% if product.is_pdf %}
+                                    <span class="tag is-danger is-light">PDF</span>
+                                {% endif %}
+                                {% if product.is_ebook %}
+                                    <span class="tag is-info is-light">E-BOOK</span>
+                                {% endif %}
+                                {% if product.is_physical %}
+                                    <span class="tag is-success is-light">PHYSICAL</span>
+                                {% endif %}
+                            </div>
                             <hr>
                         </p>
                         

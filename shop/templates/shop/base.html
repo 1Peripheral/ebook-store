@@ -12,11 +12,11 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 
-<header>
+<header class="">
     <nav class="navbar is-black is-fixed-top" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <a class="navbar-item is-size-5" href="{% url 'store'%}">
-                <strong>O-KEEPERS</strong>
+            <a class="navbar-item is-size-5 ml-5" href="{% url 'store'%}">
+                <strong>OKEEPERS</strong>
             </a>
             {% if user.is_authenticated %}
                 <p id="user-name" class="navbar-item">{{ user.get_username }}</p>
@@ -28,17 +28,19 @@
             </a>
         </div>
 
-        <div class="navbar-menu" id="nav-links">
+        <div class="navbar-menu mr-5" id="nav-links">
             <div class="navbar-start">
                 <a href="{% url 'store' %}" class="navbar-item">
                     Store
                 </a>
             </div>
                 <div class="navbar-end">
+                    {% if user.is_authenticated %}
                     <a href="{% url 'cart' %}" class="navbar-item">
                         <img src="{% static 'images/cart.png' %}" id="cart-icon">
                         <p id="cart-total"></p>
                     </a>
+                    {% endif %}
                     <div class="navbar-item">
                         <div class="buttons">
                             {% if user.is_authenticated %}
@@ -71,7 +73,7 @@
                     <div class="columns">
                         <div class="column is-3">
                             <p class="control has-icons-left">
-                                <input class="input is-medium" type="text" placeholder="Search.." name="search_query">
+                                <input class="input is-medium" type="text" placeholder="Search.." name="search_query" required>
                                 <span class="icon is-small is-left">
                                     <i class="fa fa-search"></i>
                                 </span>
@@ -98,4 +100,11 @@
     <script type="text/javascript">var user = '{{ request.user }}'</script>
 </body>
 
+<footer class="footer is-fixed-bottom mt-auto">
+    <div class="container has-text-centered">
+        <p>
+            <strong>OKEEPERS</strong> by us. Copyright 2023 &#xa9;
+        </p>
+    </div>
+</footer>
 </html>
