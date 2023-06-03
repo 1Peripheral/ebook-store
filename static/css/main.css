@@ -3,8 +3,17 @@
 * {
     font-family: 'Poppins', sans-serif;
 }
+
+html {
+	height: 100%;
+}
+
 body{
 	background-color: hsl(0, 0%, 98%);
+	min-height: 100%;
+	display:flex;
+	flex-direction: column;
+	background-color: #F8F6F4!important;
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -32,7 +41,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .is-black{
-	background-color: #4C4C6D!important;
+	background-color: #6E85B7!important; 
 }
 
 #cart-icon{
@@ -123,4 +132,22 @@ h1,h2,h3,h4,h5,h6{
 
 .search-bar {
 	margin: 2rem 0 0 0;
+}
+
+.banner {
+	width: 100%;
+}
+
+.banner-text h1 {
+	font-size: 64px;
+	font-weight: 800;
+}
+
+.banner-text h5 {
+	font-size: 32px;
+	font-weight: 500;
+}
+
+footer {
+	background-color: #DBDFEA!important;
 }

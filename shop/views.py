@@ -33,6 +33,7 @@ def checkout(request):
     return render(request, "shop/checkout.html", context)
 
 
+@login_required(login_url="/accounts/login")
 def cart(request):
     context = {}
     if request.user.is_authenticated:

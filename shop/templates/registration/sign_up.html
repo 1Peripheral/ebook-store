@@ -3,24 +3,58 @@
 
 {% block content %}
 
-<form method="POST" novalidate>
-	{% csrf_token %}
-	<h2>Sign Up</h2>
-		
-	{% for field in form %}
-	<p>
-		{% if field.errors %}
-		<ul class="errorlist">
-			{% for error in field.errors %}
-			<li>{{ error }}</li>
-			{% endfor %}
-		</ul>
-		{% endif %}
-	 	{{ field.label_tag }} {{ field }}
-	</p>
-	{% endfor %}
-	<input type="submit" value="Register" />
-</form>
-</form>
+{% comment %}
+<section class="section">
+	<form method="POST" novalidate>
+		{% csrf_token %}
+		<h2>Sign Up</h2>
+			
+		{% for field in form %}
+		<p>
+			{% if field.errors %}
+			<ul class="errorlist">
+				{% for error in field.errors %}
+				<li>{{ error }}</li>
+				{% endfor %}
+			</ul>
+			{% endif %}
+			{{ field.label_tag }} {{ field }}
+		</p>
+		{% endfor %}
+		<input type="submit" value="Register"/>
+	</form>
+</section>
+{% endcomment %}
 
+<section class="section">
+    {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+    <div class="container ">
+        <div class="columns is-flex is-flex-wrap-wrap is-centered">
+            <form method="POST" novalidate>
+                {% csrf_token %}
+                <label class="label is-large ">Register</label>
+                
+                <div class="control field">
+                    <input class="input" id="id_username" type="text" name="username" maxlength="65" placeholder="Username.." required>
+                </div>
+
+                <div class="control field">
+                    <input class="input" id="id_email" type="email" name="email" maxlength="254" placeholder="Email.." required>
+                </div>
+
+                <div class="control field">
+                    <input class="input" id="id_password1" type="password" name="password1" maxlength="65" placeholder="Password.." required>
+                </div>
+        
+                <div class="control field">
+                    <input class="input" id="id_password2" type="password" name="password2" maxlength="65" placeholder="Password.." required>
+                </div>
+
+                <input class="button is-outlined is-link" type="submit" value="Register">
+            </form>
+        </div>
+    </div>
+</section>
 {% endblock content%}

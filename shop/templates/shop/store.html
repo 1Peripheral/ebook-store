@@ -8,11 +8,24 @@
                 {% for product in products%}
                 <div class="column is-3">
                     <div class="card">
+                        <a href="{% url 'detail' product.id %}">
                         <div class="card-image">
                             <img class="thumbnail" src="{{ product.imageURL }}" alt="">
                         </div>
+                        </a>
                         <div class="card-content">
                             <strong>{{product.name}}</strong>
+                            <div class="block my-5">
+                                {% if product.is_pdf %}
+                                    <span class="tag is-danger is-light">PDF</span>
+                                {% endif %}
+                                {% if product.is_ebook %}
+                                    <span class="tag is-info is-light">E-BOOK</span>
+                                {% endif %}
+                                {% if product.is_physical %}
+                                    <span class="tag is-success is-light">PHYSICAL</span>
+                                {% endif %}
+                            </div>
                             <hr>
                             <button data-product="{{product.id}}" data-action="add" class="button is-secondary is-light is-small update-cart">Add To Cart</button>
                             <a class="button is-primary is-light is-small" href="{% url 'detail' product.id %}">View </a>

@@ -3,6 +3,7 @@ from .forms import RegisterForm, LoginForm
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 
+# Sign Up
 def sign_up(request):
     if request.user.is_authenticated:
         return redirect('/')
@@ -23,11 +24,11 @@ def sign_up(request):
     
         else:
             return render(request, 'registration/sign_up.html', {'form':form})
-    
+#Log In 
 def sign_in(request):
     if request.method == 'GET':
         form = LoginForm()
-        return render(request, 'registration/sign_up.html', {'form':form})
+        return render(request, 'registration/login.html', {'form':form})
 
     elif request.method == 'POST':
         form = LoginForm(request.POST)
