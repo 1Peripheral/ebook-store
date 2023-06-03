@@ -10,6 +10,7 @@ html {
 
 body{
 	background-color: hsl(0, 0%, 98%);
+	/* background: linear-gradient(#6E85B7, #DBDFEA); */
 	min-height: 100%;
 	display:flex;
 	flex-direction: column;
@@ -18,6 +19,28 @@ body{
 
 h1,h2,h3,h4,h5,h6{
 	color:hsl(0, 0%, 30%);
+}
+
+.header-items a{
+	font-weight: bold;
+	cursor: pointer;
+	transition: ease-in  0.2s;
+	opacity:0.8;
+}
+
+.header-items a:hover {
+	opacity:1;
+}
+
+.logo{
+	font-weight: bold;
+	cursor: pointer;
+	transition: ease-in  0.2s;
+	opacity:0.9;
+}
+
+.logo:hover {
+	opacity:2;
 }
 
 .box-element{
@@ -132,10 +155,6 @@ h1,h2,h3,h4,h5,h6{
 
 .search-bar {
 	margin: 2rem 0 0 0;
-}
-
-.banner {
-	width: 100%;
 }
 
 .banner-text h1 {

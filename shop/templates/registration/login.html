@@ -5,34 +5,6 @@
 
 
 <section class="section">
-    {% comment %}
-      {% if form.errors %}
-        <p>Your username and password didn't match. Please try again.</p>
-        {% endif %}
-    <form method="POST" action="{% url 'login' %}">
-        {% csrf_token %}
-        <h2>Log In</h2>
-            
-        {% for field in form %}
-        <p>
-            {% if field.errors %}
-            <ul class="errorlist">
-                {% for error in field.errors %}
-                <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-            {{ field.label_tag }} {{ field }}
-        </p>
-        {% endfor %}
-                        <input type="submit" value="Login">
-        <input type="hidden" name="next" value="{{ next }}">
-    </form>
-</section>
-    {% endcomment %}
-
-
-<section class="section">
     {% if form.errors %}
         <p>Your username and password didn't match. Please try again.</p>
     {% endif %}

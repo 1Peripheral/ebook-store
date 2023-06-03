@@ -3,29 +3,6 @@
 
 {% block content %}
 
-{% comment %}
-<section class="section">
-	<form method="POST" novalidate>
-		{% csrf_token %}
-		<h2>Sign Up</h2>
-			
-		{% for field in form %}
-		<p>
-			{% if field.errors %}
-			<ul class="errorlist">
-				{% for error in field.errors %}
-				<li>{{ error }}</li>
-				{% endfor %}
-			</ul>
-			{% endif %}
-			{{ field.label_tag }} {{ field }}
-		</p>
-		{% endfor %}
-		<input type="submit" value="Register"/>
-	</form>
-</section>
-{% endcomment %}
-
 <section class="section">
     {% if form.errors %}
         <p>Your username and password didn't match. Please try again.</p>
