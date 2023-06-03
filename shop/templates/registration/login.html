@@ -5,6 +5,7 @@
 
 
 <section class="section">
+    {% comment %}
       {% if form.errors %}
         <p>Your username and password didn't match. Please try again.</p>
         {% endif %}
@@ -24,10 +25,36 @@
             {{ field.label_tag }} {{ field }}
         </p>
         {% endfor %}
-        <input type="submit" value="login">
+                        <input type="submit" value="Login">
         <input type="hidden" name="next" value="{{ next }}">
     </form>
 </section>
+    {% endcomment %}
 
+
+<section class="section">
+    {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+    <div class="container ">
+        <div class="columns is-flex is-flex-wrap-wrap is-centered">
+            <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                <label class="label is-large ">Log In</label>
+                
+                <div class="control field">
+                    <input class="input" id="id_username" type="text" name="username" maxlength="65" placeholder="Username.." required>
+                </div>
+
+                <div class="control field">
+                    <input class="input" id="id_password" type="password" name="password" maxlength="65" placeholder="Password.." required>
+                </div>
+        
+                <input class="button is-outlined is-link" type="submit" value="login">
+                <input type="hidden" name="next" value="{{ next }}">
+            </form>
+        </div>
+    </div>
+</section>
 
 {% endblock %}

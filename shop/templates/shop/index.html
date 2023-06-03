@@ -2,5 +2,27 @@
 {% load static %}
 
 {% block content %}
-    <h3>Index</h3>
+<div class="banner">
+    <section class="section">
+        <div class="container">
+            <div class="columns is-flex is-flex-wrap-wrap is-centered">
+                <div class="banner-text pr-5">
+                    <h5>WELCOME TO THE</h5> 
+                    <h1>BOOK STORE</h1>
+                </div>
+                <div class="columns is-flex">
+                    <div class="is-justify-content-flex-end">
+                        <img src="{% static '/images/header-img.png' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="columns is-centered m-5">
+                <a href="{% url 'store' %}" class="button is-link is-outlined is-large"> Go To Store</a>
+            </div>
+        </div>
+    </section>
+</div>
 {% endblock content %}

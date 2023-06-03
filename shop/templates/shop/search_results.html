@@ -35,8 +35,6 @@
                             <hr>
                         </p>
                         
-                        <button data-product="{{product.id}}" data-action="add"
-                                class="button is-secondary is-light is-small update-cart">Add To Cart</button>
                         <a class="button is-primary is-light is-small" href="{% url 'detail' product.id %}">View </a>
                         <h4 class="prices">${{product.price|floatformat:2}}</h4>
                     </div>
