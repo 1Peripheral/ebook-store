@@ -48,7 +48,8 @@ def cart(request):
 def viewDetails(request, productId):
     print(productId)
     product = Product.objects.get(id=productId)
-    context = {"product": product}
+    reviews = product.review_set.all() #type: ignore
+    context = {"product": product, "reviews": reviews}
     return render(request, "shop/detail.html", context)
 
 
@@ -59,6 +60,16 @@ def searchResults(request):
         items = Product.objects.filter(name__icontains=search_query)
         context = {'items' : items}
     return render(request, "shop/search_results.html", context)
+
+def postReview(request, productId):
+    if request.method == 'POST':
+        review_text = request.POST['review']
+        product = Product.objects.get(id=productId)
+        review = Review(user=request.user, product=product, review=review_text)
+        review.save()
+        return redirect(viewDetails, productId)
+    return redirect(viewDetails, productId)
+
 
 
 def updateItem(request):
@@ -83,3 +94,5 @@ def updateItem(request):
         orderItem.delete()
 
     return JsonResponse("Item was added", safe=False)
+
+    

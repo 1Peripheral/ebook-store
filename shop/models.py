@@ -24,9 +24,15 @@ class Product(models.Model):
             url = ""
         return url
 
+class Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
+    stars = models.IntegerField(default=3)
+    review = models.CharField(max_length=512, null=False)
+
 
 class Order(models.Model):
-    customer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    customer = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     date_ordered = models.DateTimeField(auto_now_add=True)
     complete = models.BooleanField(default=False, null=True, blank=False)
     transaction_id = models.CharField(max_length=200, null=True)
@@ -57,8 +63,8 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
-    order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True)
     quantity = models.IntegerField(default=0, null=False, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
 
@@ -68,9 +74,9 @@ class OrderItem(models.Model):
         return total
 
 
-class UserDetails(models.Model):
-    customer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
+class UserDetail(models.Model):
+    customer = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True)
     address = models.CharField(max_length=200, null=False)
     city = models.CharField(max_length=200, null=False)
     zipcode = models.CharField(max_length=200, null=False)
