@@ -16,29 +16,75 @@
                     <div class="content">
                         <p class="product-description">
                             <strong>{{product.name}}</strong>
-                            <p>{{ product.description}}</p>
-                            <div class="block my-5">
-                                {% if product.is_pdf %}
-                                    <span class="tag is-danger is-light">PDF</span>
-                                {% endif %}
-                                {% if product.is_ebook %}
-                                    <span class="tag is-info is-light">E-BOOK</span>
-                                {% endif %}
-                                {% if product.is_physical %}
-                                    <span class="tag is-success is-light">PHYSICAL</span>
-                                {% endif %}
-                            </div>
-                            <hr>
+                        <p>{{ product.description}}</p>
+                        <div class="block my-5">
+                            {% if product.is_pdf %}
+                            <span class="tag is-danger is-light">PDF</span>
+                            {% endif %}
+                            {% if product.is_ebook %}
+                            <span class="tag is-info is-light">E-BOOK</span>
+                            {% endif %}
+                            {% if product.is_physical %}
+                            <span class="tag is-success is-light">PHYSICAL</span>
+                            {% endif %}
+                        </div>
+                        <hr>
                         </p>
-                        
+
                         <button data-product="{{product.id}}" data-action="add"
-                                class="button is-secondary is-light is-small update-cart">Add To Cart</button>
+                            class="button is-secondary is-light is-small update-cart">Add To Cart</button>
                         <h4 class="prices">${{product.price|floatformat:2}}</h4>
                     </div>
                 </div>
             </article>
         </div>
     </div>
+</section>
+
+<section class="section">
+    <div class="block">
+        {% for review in reviews %}
+        <article class="media">
+            <figure class="media-left">
+                <p class="image is-64x64">
+                    <img src="{% static 'images/user-placeholder.png' %}">
+                </p>
+            </figure>
+            <div class="media-content">
+                <div class="content">
+                    <p>
+                        <strong>{{ review.user }}</strong>  <small></small>
+                        <br>
+                        {{ review.review }}
+                    </p>
+                </div>
+     
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+
+    {% if user.is_authenticated %}
+    <div class="block is-flex">
+        <dialog id="review_modal" >
+            <form action="{% url 'post_review' product.id %}" method="POST">
+                {% csrf_token %}
+                <div class="block">
+                    <label for="label review"><strong>REVIEW</strong></label>
+                </div>
+                <div class="block">
+                    <textarea name="review" class="textarea is-link" placeholder="Your Review ..." cols="60" rows="10" required autofocus></textarea>
+                </div>
+                <div class="block">
+                    <input class="button is-link" type="submit" value="Post">
+                </div>
+            </form>
+        </dialog>
+        <button class="button is-warning mt-5" onclick="review_modal.showModal()">
+            Post Review
+        </button>
+    </div>
+    {% endif %}
 </section>
 
 {% endblock content %}

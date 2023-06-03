@@ -36,7 +36,7 @@
     {% if form.errors %}
         <p>Your username and password didn't match. Please try again.</p>
     {% endif %}
-    <div class="container ">
+    <div class="container">
         <div class="columns is-flex is-flex-wrap-wrap is-centered">
             <form method="POST" action="{% url 'login' %}">
                 {% csrf_token %}
