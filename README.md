@@ -5,4 +5,4 @@
 
 2- Create a virutal environment .
 
-3- install the dependencies.
+3- Install the dependencies.
